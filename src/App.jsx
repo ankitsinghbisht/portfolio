@@ -530,7 +530,7 @@ function App() {
             title="Domain experience, translated into QA risk"
             text="Not just industries I have touched, but the types of product risk I have learned to test: payments, data accuracy, platform reliability, role-based workflows, and reporting trust."
           />
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {domains.map((domain) => {
               const Icon = domain.icon;
               return (
@@ -540,7 +540,7 @@ function App() {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.25 }}
                   variants={fadeUp}
-                  className="group border border-stone-900/10 bg-stone-50 p-6 transition hover:-translate-y-1 hover:border-amber-500 hover:bg-white hover:shadow-xl hover:shadow-stone-200/80"
+                  className="group border border-stone-900/10 bg-stone-50 sm:p-6 p-6 transition hover:-translate-y-1 hover:border-amber-500 hover:bg-white hover:shadow-xl hover:shadow-stone-200/80"
                 >
                   <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-stone-950 text-white transition group-hover:bg-amber-400 group-hover:text-stone-950">
                     <Icon className="h-6 w-6" />
@@ -567,13 +567,13 @@ function App() {
             text="A compact view of the teams, processes, domains, and responsibilities that shaped how I approach quality ownership, collaboration, automation, and release confidence."
             inverted
           />
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {experience.map((item) => (
-              <div key={`${item.company}-${item.period}`} className="border border-white/10 bg-white/[0.04] p-6 transition hover:border-amber-400/70 hover:bg-white/[0.07]">
+              <div key={`${item.company}-${item.period}`} className="border border-white/10 bg-white/[0.04] sm:p-4 p-6 transition hover:border-amber-400/70 hover:bg-white/[0.07]">
                 <p className="mb-4 inline-flex rounded-full bg-amber-300 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-stone-950">
                   {item.period}
                 </p>
-                <h3 className="font-serif text-xl font-black text-white">{item.company}</h3>
+                <h3 className="font-serif text-xl sm:text-lg md:text-xl font-black text-white">{item.company}</h3>
                 <p className="mt-2 text-sm font-black text-amber-200">{item.title}</p>
                 <p className="mt-4 text-sm leading-6 text-stone-300">{item.summary}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
