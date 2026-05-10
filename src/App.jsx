@@ -346,16 +346,16 @@ function App() {
 
       <section id="top" className="relative overflow-hidden border-b border-stone-900/10">
         <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(68,64,60,0.08)_1px,transparent_1px),linear-gradient(60deg,rgba(68,64,60,0.05)_1px,transparent_1px)] bg-[length:42px_42px]" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-[1.05fr_0.95fr] md:px-10 lg:py-24">
+        <div className="relative mx-auto grid max-w-7xl gap-10 sm:px-4 md:px-10 sm:py-8 md:py-16 sm:grid-cols-1 md:grid-cols-[1.05fr_0.95fr] lg:py-24">
           <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.6 }}>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-stone-900/10 bg-white/70 px-4 py-2 text-sm font-black text-stone-700 shadow-sm backdrop-blur">
               <Sparkles className="h-4 w-4" />
               Passionate About Quality | Delivering Quality at Scale
             </div>
-            <h1 className="max-w-4xl font-serif text-5xl font-black leading-[0.95] tracking-tight text-stone-950 md:text-7xl">
+            <h1 className="max-w-4xl font-serif text-5xl font-black leading-[0.95] tracking-tight text-stone-950 sm:text-4xl md:text-5xl lg:text-7xl">
               {profile.name}
             </h1>
-            <p className="mt-5 text-xl font-black text-stone-800">{profile.role}</p>
+            <p className="mt-5 text-lg sm:text-base font-black text-stone-800 md:text-xl">{profile.role}</p>
             <p className="mt-2 text-base font-bold text-stone-500">{profile.location}</p>
             <p className="mt-7 max-w-3xl text-lg leading-8 text-stone-700">{profile.headline}</p>
             <div className="mt-7 grid max-w-3xl gap-3 sm:grid-cols-3">
@@ -391,7 +391,7 @@ function App() {
           >
             <div className="relative overflow-hidden bg-[radial-gradient(circle_at_28%_18%,rgba(251,191,36,0.22),transparent_28%),linear-gradient(135deg,#1c1917,#0c0a09)] p-6">
               <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(0deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:28px_28px]" />
-              <div className="relative mx-auto max-w-[300px] overflow-hidden rounded-full border border-white/15 bg-stone-900 shadow-2xl shadow-black/40">
+              <div className="relative mx-auto max-w-xs sm:max-w-sm overflow-hidden rounded-full border border-white/15 bg-stone-900 shadow-2xl shadow-black/40">
                 <img
                   src="/ankit-profile-rounded.png"
                   alt="Ankit Singh Bisht"
