@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  font-family: "Aptos", "Trebuchet MS", "Segoe UI", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f6f1e8;
+}
+
+::selection {
+  background: #fbbf24;
+  color: #1c1917;
+}
+
+.font-serif {
+  font-family: Georgia, "Times New Roman", serif;
+}
