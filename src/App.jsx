@@ -320,7 +320,7 @@ function App() {
   return (
     <main className="min-h-screen bg-[#f6f1e8] text-stone-900">
       <nav className="sticky top-0 z-30 border-b border-stone-900/10 bg-[#f6f1e8]/90 px-6 py-4 backdrop-blur md:px-10">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-5">
+        <div className="mx-auto flex sm:flex-wrap max-w-7xl items-center justify-between gap-5">
           <a href="#top" className="font-serif text-xl font-black text-stone-950">
             Ankit Singh Bisht
           </a>
@@ -329,7 +329,7 @@ function App() {
               <a
                 key={href}
                 href={href}
-                className="rounded-full px-4 py-2 text-sm font-bold text-stone-600 transition hover:bg-stone-950 hover:text-white"
+                className="rounded-full px-4 sm:py-3 py-2 sm:text-xs text-sm font-bold text-stone-600 transition hover:bg-stone-950 hover:text-white"
               >
                 {label}
               </a>
@@ -485,7 +485,7 @@ function App() {
           text="A concise view of the platforms where I handled QA risk, validation depth, automation coverage, and release confidence."
         />
 
-        <div className="mx-auto mb-8 flex max-w-xl items-center gap-3 rounded-full border border-stone-900/10 bg-white px-5 py-3 shadow-lg shadow-stone-200/80">
+        <div className="mx-auto mb-8 flex w-full sm:max-w-xl items-center gap-3 rounded-full border border-stone-900/10 bg-white px-5 py-3 shadow-lg shadow-stone-200/80">
           <Search className="h-5 w-5 text-amber-700" />
           <input
             value={query}
@@ -495,7 +495,7 @@ function App() {
           />
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
           {filteredProjects.map((project) => (
             <motion.article
               key={project.title}
@@ -503,16 +503,16 @@ function App() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.25 }}
               variants={fadeUp}
-              className="group rounded-[1.25rem] border border-stone-900/10 bg-white p-7 shadow-sm shadow-stone-200/80 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-300/50"
+              className="group rounded-[1.25rem] border border-stone-900/10 bg-white sm:p-5 p-7 shadow-sm shadow-stone-200/80 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-300/50"
             >
               <div className="mb-5 flex items-start justify-between gap-4">
                 <div>
                   <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-700">{project.domain}</p>
-                  <h3 className="mt-2 font-serif text-3xl font-black text-stone-950">{project.title}</h3>
+                  <h3 className="mt-2 font-serif text-3xl sm:text-2xl md:text-3xl font-black text-stone-950">{project.title}</h3>
                 </div>
                 <ExternalLink className="h-5 w-5 shrink-0 text-stone-400 transition group-hover:text-amber-700" />
               </div>
-              <p className="text-sm leading-7 text-stone-600">{project.summary}</p>
+              <p className="text-sm sm:text-xs md:text-sm leading-7 text-stone-600">{project.summary}</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {project.focus.map((item) => (
                   <Pill key={item}>{item}</Pill>
@@ -595,11 +595,11 @@ function App() {
           title="Focused capabilities, not a keyword pile"
           text="A cleaner view of the skills that matter most for senior QA ownership: strategy, automation, delivery visibility, and thoughtful AI-assisted testing."
         />
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {skillGroups.map((group) => (
-            <div key={group.title} className="border border-stone-900/10 bg-white p-6 shadow-sm shadow-stone-200/80">
-              <h3 className="font-serif text-2xl font-black text-stone-950">{group.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-stone-600">{group.text}</p>
+            <div key={group.title} className="border border-stone-900/10 bg-white sm:p-4 p-6 shadow-sm shadow-stone-200/80">
+              <h3 className="font-serif text-2xl sm:text-xl md:text-2xl font-black text-stone-950">{group.title}</h3>
+              <p className="mt-3 text-sm sm:text-xs md:text-sm leading-6 text-stone-600">{group.text}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <Pill key={item}>{item}</Pill>
