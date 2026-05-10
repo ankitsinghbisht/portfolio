@@ -467,11 +467,11 @@ function App() {
             title="QA leadership for teams that need reliable releases, not just more test cases"
             text={profile.summary}
           />
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
-              <div key={service} className="flex items-start gap-3 border-l-4 border-amber-500 bg-stone-50 p-4">
+              <div key={service} className="flex items-start gap-3 border-l-4 border-amber-500 bg-stone-50 sm:p-3 p-4">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-stone-900" />
-                <p className="text-sm font-bold text-stone-700">{service}</p>
+                <p className="text-sm sm:text-xs md:text-sm font-bold text-stone-700">{service}</p>
               </div>
             ))}
           </div>
