@@ -5,6 +5,8 @@ import {
   BarChart3,
   Bot,
   CheckCircle2,
+  ChevronLeft,
+  ChevronRight,
   Cloud,
   Database,
   ExternalLink,
@@ -279,9 +281,68 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+const storySlides = [
+  {
+    eyebrow: "Profile",
+    title: profile.name,
+    text: profile.headline,
+    meta: profile.role,
+    tone: "light",
+  },
+  {
+    eyebrow: "Release Signal",
+    title: "Quality leadership that ships calmly.",
+    text: "A quick view of the release, product, data, and process strengths I bring into teams.",
+    items: highlights.map((item) => item.title),
+    tone: "dark",
+  },
+  {
+    eyebrow: "Projects",
+    title: "Complex products, tested for the risks that matter.",
+    text: "Representative contexts across FoodTech POS, cloud, lending, healthcare, claims, data, and risk intelligence.",
+    items: projects.slice(0, 4).map((project) => project.title),
+    tone: "light",
+  },
+  {
+    eyebrow: "Domains",
+    title: "Domain risk translated into practical QA focus.",
+    text: "Payments, data accuracy, platform reliability, role-based workflows, reporting trust, and operational readiness.",
+    items: domains.slice(0, 4).map((domain) => domain.name),
+    tone: "dark",
+  },
+  {
+    eyebrow: "Experience",
+    title: "10+ years across delivery, QA, automation, and leadership.",
+    text: "From hands-on validation to QA ownership, release sign-off, process clarity, and team guidance.",
+    items: experience.slice(0, 4).map((item) => item.company),
+    tone: "light",
+  },
+  {
+    eyebrow: "Skills",
+    title: "Focused capabilities, not a keyword pile.",
+    text: "Strategy, automation, tooling, data validation, release communication, and AI-assisted QA workflows.",
+    items: skillGroups.map((group) => group.title),
+    tone: "dark",
+  },
+  {
+    eyebrow: "Education",
+    title: "Engineering depth with business leadership context.",
+    text: "Executive MBA plus Computer Science Engineering background.",
+    items: education.map((item) => `${item.degree} - ${item.year}`),
+    tone: "light",
+  },
+  {
+    eyebrow: "Work With Me",
+    title: "Bring me in when releases need calmer evidence.",
+    text: "Useful for QA ownership, practical automation, regression routines, data-heavy validation, and clearer sign-off.",
+    items: ["Release confidence", "Automation routines", "Data validation"],
+    tone: "dark",
+  },
+];
+
 function Pill({ children }) {
   return (
-    <span className="rounded-full border border-stone-300 bg-stone-50 px-3 py-1 text-sm font-medium text-stone-700 shadow-sm shadow-stone-200/60">
+    <span className="inline-flex max-w-full rounded-full border border-stone-300 bg-stone-50 px-2.5 py-1 text-xs font-medium leading-5 text-stone-700 shadow-sm shadow-stone-200/60 sm:px-3 sm:text-sm">
       {children}
     </span>
   );
@@ -289,13 +350,13 @@ function Pill({ children }) {
 
 function SectionTitle({ eyebrow, title, text, inverted = false }) {
   return (
-    <div className="mx-auto mb-10 max-w-4xl text-center">
-      <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-amber-700">{eyebrow}</p>
-      <h2 className={`text-3xl font-black tracking-tight md:text-5xl ${inverted ? "text-white" : "text-stone-950"}`}>
+    <div className="mx-auto mb-8 max-w-4xl text-center md:mb-10">
+      <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-amber-700 sm:text-sm sm:tracking-[0.24em]">{eyebrow}</p>
+      <h2 className={`text-2xl font-black leading-tight tracking-tight sm:text-3xl md:text-5xl ${inverted ? "text-white" : "text-stone-950"}`}>
         {title}
       </h2>
       {text && (
-        <p className={`mx-auto mt-5 max-w-3xl text-base leading-8 ${inverted ? "text-stone-300" : "text-stone-600"}`}>
+        <p className={`mx-auto mt-4 max-w-3xl text-sm leading-7 sm:text-base sm:leading-8 ${inverted ? "text-stone-300" : "text-stone-600"}`}>
           {text}
         </p>
       )}
@@ -303,8 +364,111 @@ function SectionTitle({ eyebrow, title, text, inverted = false }) {
   );
 }
 
+function AvatarImage({ className = "", sizes = "(max-width: 767px) 45vw, 384px" }) {
+  return (
+    <img
+      src="/ankit-avatar-384.jpg"
+      srcSet="/ankit-avatar-240.jpg 240w, /ankit-avatar-384.jpg 384w, /ankit-avatar-640.jpg 640w, /ankit-avatar-960.jpg 960w"
+      sizes={sizes}
+      alt="Ankit Singh Bisht"
+      width="640"
+      height="640"
+      className={className}
+      loading="eager"
+      decoding="async"
+    />
+  );
+}
+
+function MobileStories({ activeStory, onPrevious, onNext, onSelect }) {
+  const story = storySlides[activeStory];
+  const isDark = story.tone === "dark";
+
+  return (
+    <section className={`mobile-stories ${isDark ? "is-dark" : "is-light"}`}>
+      <div className="story-progress" aria-label={`Story ${activeStory + 1} of ${storySlides.length}`}>
+        {storySlides.map((slide, index) => (
+          <button
+            key={slide.eyebrow}
+            type="button"
+            className={`story-progress-segment ${index <= activeStory ? "is-filled" : ""}`}
+            onClick={() => onSelect(index)}
+            aria-label={`Go to ${slide.eyebrow}`}
+          />
+        ))}
+      </div>
+
+      <div className="story-topbar">
+        <a href={`mailto:${profile.email}`} className="story-contact" aria-label="Email Ankit Singh Bisht">
+          <Mail className="h-4 w-4" />
+        </a>
+        <span>{activeStory + 1}/{storySlides.length}</span>
+      </div>
+
+      <button type="button" className="story-tap-zone story-tap-left" onClick={onPrevious} aria-label="Previous segment" />
+      <button type="button" className="story-tap-zone story-tap-right" onClick={onNext} aria-label="Next segment" />
+
+      <motion.article
+        key={story.eyebrow}
+        initial={{ opacity: 0, x: 28, scale: 0.98 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ duration: 0.28, ease: "easeOut" }}
+        className="story-card"
+      >
+        <div className="story-kicker">
+          <Sparkles className="h-4 w-4" />
+          <span>{story.eyebrow}</span>
+        </div>
+
+        {activeStory === 0 && (
+          <div className="story-avatar">
+            <AvatarImage sizes="45vw" />
+          </div>
+        )}
+
+        <h1>{story.title}</h1>
+        {story.meta && <p className="story-meta">{story.meta}</p>}
+        <p className="story-copy">{story.text}</p>
+
+        {story.items && (
+          <div className="story-list">
+            {story.items.map((item) => (
+              <div key={item} className="story-list-item">
+                <CheckCircle2 className="h-4 w-4" />
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {activeStory === storySlides.length - 1 && (
+          <div className="story-actions">
+            <a href={`mailto:${profile.email}`}>
+              Email me <ArrowRight className="h-4 w-4" />
+            </a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+        )}
+      </motion.article>
+
+      <div className="story-controls">
+        <button type="button" onClick={onPrevious} aria-label="Previous segment">
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <span>Tap sides to flip</span>
+        <button type="button" onClick={onNext} aria-label="Next segment">
+          <ChevronRight className="h-5 w-5" />
+        </button>
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const [query, setQuery] = useState("");
+  const [activeStory, setActiveStory] = useState(0);
 
   const filteredProjects = useMemo(() => {
     const normalized = query.toLowerCase().trim();
@@ -317,11 +481,27 @@ function App() {
     });
   }, [query]);
 
+  const goToPreviousStory = () => {
+    setActiveStory((current) => Math.max(0, current - 1));
+  };
+
+  const goToNextStory = () => {
+    setActiveStory((current) => Math.min(storySlides.length - 1, current + 1));
+  };
+
   return (
-    <main className="min-h-screen bg-[#f6f1e8] text-stone-900">
-      <nav className="sticky top-0 z-30 border-b border-stone-900/10 bg-[#f6f1e8]/90 px-6 py-4 backdrop-blur md:px-10">
-        <div className="mx-auto flex sm:flex-wrap max-w-7xl items-center justify-between gap-5">
-          <a href="#top" className="font-serif text-xl font-black text-stone-950">
+    <main className="site-scroll min-h-screen overflow-x-hidden bg-[#f6f1e8] text-stone-900">
+      <MobileStories
+        activeStory={activeStory}
+        onPrevious={goToPreviousStory}
+        onNext={goToNextStory}
+        onSelect={setActiveStory}
+      />
+
+      <div className="desktop-site">
+      <nav className="mobile-story-nav sticky top-0 z-30 border-b border-stone-900/10 bg-[#f6f1e8]/95 px-3 py-2.5 backdrop-blur sm:px-4 md:px-10 md:py-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 md:gap-5">
+          <a href="#top" className="min-w-0 font-serif text-base font-black leading-tight text-stone-950 sm:text-xl">
             Ankit Singh Bisht
           </a>
           <div className="hidden items-center gap-1 md:flex">
@@ -337,38 +517,44 @@ function App() {
           </div>
           <a
             href={`mailto:${profile.email}`}
-            className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-4 py-2 text-sm font-black text-stone-950 shadow-lg shadow-amber-900/10 transition hover:-translate-y-0.5 hover:bg-amber-400"
+            aria-label="Contact Ankit Singh Bisht by email"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-amber-500 p-0 text-xs font-black text-stone-950 shadow-lg shadow-amber-900/10 transition hover:-translate-y-0.5 hover:bg-amber-400 sm:h-auto sm:w-auto sm:px-4 sm:py-2 sm:text-sm"
           >
-            <Mail className="h-4 w-4" /> Contact
+            <Mail className="h-4 w-4" /> <span className="contact-label hidden sm:inline">Contact</span>
           </a>
+        </div>
+        <div className="mx-auto mt-1.5 flex max-w-md items-center justify-center gap-2 text-[0.62rem] font-black uppercase tracking-[0.16em] text-stone-500 md:hidden">
+          <span className="h-px flex-1 bg-stone-900/10" />
+          Scroll to explore
+          <span className="h-px flex-1 bg-stone-900/10" />
         </div>
       </nav>
 
-      <section id="top" className="relative overflow-hidden border-b border-stone-900/10">
+      <section id="top" className="parallax-section hero-panel relative overflow-hidden border-b border-stone-900/10">
         <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(68,64,60,0.08)_1px,transparent_1px),linear-gradient(60deg,rgba(68,64,60,0.05)_1px,transparent_1px)] bg-[length:42px_42px]" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 sm:px-4 md:px-10 sm:py-8 md:py-16 sm:grid-cols-1 md:grid-cols-[1.05fr_0.95fr] lg:py-24">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.6 }}>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-stone-900/10 bg-white/70 px-4 py-2 text-sm font-black text-stone-700 shadow-sm backdrop-blur">
-              <Sparkles className="h-4 w-4" />
-              Passionate About Quality | Delivering Quality at Scale
+        <div className="relative mx-auto grid max-w-7xl gap-7 px-3 py-7 sm:px-6 sm:py-10 md:grid-cols-[1.05fr_0.95fr] md:px-10 md:py-16 lg:gap-10 lg:py-24">
+          <motion.div className="parallax-copy min-w-0" initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.6 }}>
+            <div className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-stone-900/10 bg-white/70 px-3 py-2 text-xs font-black leading-5 text-stone-700 shadow-sm backdrop-blur sm:mb-6 sm:px-4 sm:text-sm">
+              <Sparkles className="h-4 w-4 shrink-0" />
+              <span className="min-w-0">Passionate About Quality | Delivering Quality at Scale</span>
             </div>
-            <h1 className="max-w-4xl font-serif text-5xl font-black leading-[0.95] tracking-tight text-stone-950 sm:text-4xl md:text-5xl lg:text-7xl">
+            <h1 className="max-w-4xl text-balance font-serif text-[2.35rem] font-black leading-[0.96] tracking-tight text-stone-950 sm:text-5xl md:text-6xl lg:text-7xl">
               {profile.name}
             </h1>
-            <p className="mt-5 text-lg sm:text-base font-black text-stone-800 md:text-xl">{profile.role}</p>
-            <p className="mt-2 text-base font-bold text-stone-500">{profile.location}</p>
-            <p className="mt-7 max-w-3xl text-lg leading-8 text-stone-700">{profile.headline}</p>
-            <div className="mt-7 grid max-w-3xl gap-3 sm:grid-cols-3">
+            <p className="mt-4 text-[0.95rem] font-black leading-7 text-stone-800 sm:text-base md:text-xl">{profile.role}</p>
+            <p className="mt-2 text-sm font-bold text-stone-500 sm:text-base">{profile.location}</p>
+            <p className="mt-5 max-w-3xl text-[0.95rem] leading-7 text-stone-700 sm:text-lg sm:leading-8 md:mt-7">{profile.headline}</p>
+            <div className="mt-5 grid max-w-3xl gap-2.5 sm:grid-cols-3 md:mt-7">
               {valueProps.map((item) => (
                 <div key={item} className="border-l-4 border-amber-500 bg-white/65 px-4 py-3 text-sm font-black leading-5 text-stone-800 shadow-sm shadow-stone-200/60">
                   {item}
                 </div>
               ))}
             </div>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-flex items-center gap-2 rounded-full bg-stone-950 px-5 py-3 text-sm font-black text-white shadow-xl shadow-stone-900/20 transition hover:-translate-y-0.5 hover:bg-stone-800"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-stone-950 px-5 py-3 text-sm font-black text-white shadow-xl shadow-stone-900/20 transition hover:-translate-y-0.5 hover:bg-stone-800"
               >
                 <Mail className="h-4 w-4" /> Start a conversation
               </a>
@@ -376,7 +562,7 @@ function App() {
                 href={profile.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-stone-900/10 bg-white/80 px-5 py-3 text-sm font-black text-stone-900 shadow-sm transition hover:-translate-y-0.5 hover:border-amber-500 hover:bg-white"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-900/10 bg-white/80 px-5 py-3 text-sm font-black text-stone-900 shadow-sm transition hover:-translate-y-0.5 hover:border-amber-500 hover:bg-white"
               >
                 <ExternalLink className="h-4 w-4" /> View LinkedIn
               </a>
@@ -387,25 +573,19 @@ function App() {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.65, delay: 0.1 }}
-            className="overflow-hidden rounded-[1.5rem] border border-stone-900 bg-stone-950 text-white shadow-2xl shadow-stone-900/25"
+            className="overflow-hidden rounded-[1.1rem] border border-stone-900 bg-stone-950 text-white shadow-2xl shadow-stone-900/25 sm:rounded-[1.5rem]"
           >
-            <div className="relative overflow-hidden bg-[radial-gradient(circle_at_28%_18%,rgba(251,191,36,0.22),transparent_28%),linear-gradient(135deg,#1c1917,#0c0a09)] p-6">
+            <div className="relative overflow-hidden bg-[radial-gradient(circle_at_28%_18%,rgba(251,191,36,0.22),transparent_28%),linear-gradient(135deg,#1c1917,#0c0a09)] p-5 sm:p-6">
               <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(0deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:28px_28px]" />
-              <div className="relative mx-auto max-w-xs sm:max-w-sm overflow-hidden rounded-full border border-white/15 bg-stone-900 shadow-2xl shadow-black/40">
-                <img
-                  src="/ankit-profile-rounded.png"
-                  alt="Ankit Singh Bisht"
-                  width="399"
-                  height="399"
-                  className="aspect-square h-auto w-full object-cover object-center"
-                />
+              <div className="relative mx-auto max-w-[14.5rem] overflow-hidden rounded-full border border-white/15 bg-stone-900 shadow-2xl shadow-black/40 sm:max-w-sm">
+                <AvatarImage className="aspect-square h-auto w-full object-cover object-center" sizes="(max-width: 767px) 70vw, (max-width: 1023px) 384px, 448px" />
               </div>
               <div className="relative mt-5">
                 <p className="text-sm font-bold text-amber-300">Positioning snapshot</p>
-                <h3 className="font-serif text-3xl font-black">QA leadership that ships</h3>
+                <h3 className="font-serif text-2xl font-black sm:text-3xl">QA leadership that ships</h3>
               </div>
             </div>
-            <div className="p-6">
+            <div className="p-5 sm:p-6">
               <div className="mb-6 flex items-center justify-between">
                 <div>
                 <p className="text-sm text-stone-400">Working style</p>
@@ -436,8 +616,8 @@ function App() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 py-16 md:px-10">
-        <div className="grid gap-6 md:grid-cols-4">
+      <section className="parallax-section mx-auto max-w-7xl px-4 py-12 sm:px-6 md:px-10 md:py-16">
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-6">
           {highlights.map((item) => {
             const Icon = item.icon;
             return (
@@ -447,7 +627,7 @@ function App() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 variants={fadeUp}
-                className="group rounded-[1.25rem] border border-stone-900/10 bg-white/75 p-6 shadow-sm shadow-stone-200/80 backdrop-blur transition hover:-translate-y-1 hover:border-amber-500"
+                className="group rounded-[1.25rem] border border-stone-900/10 bg-white/75 p-5 shadow-sm shadow-stone-200/80 backdrop-blur transition hover:-translate-y-1 hover:border-amber-500 md:p-6"
               >
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-stone-950 transition group-hover:bg-amber-500">
                   <Icon className="h-6 w-6 text-white group-hover:text-stone-950" />
@@ -460,42 +640,42 @@ function App() {
         </div>
       </section>
 
-      <section id="about" className="border-y border-stone-900/10 bg-white px-6 py-20 md:px-10">
+      <section id="about" className="parallax-section border-y border-stone-900/10 bg-white px-4 py-14 sm:px-6 md:px-10 md:py-20">
         <div className="mx-auto max-w-5xl">
           <SectionTitle
             eyebrow="About"
             title="QA leadership for teams that need reliable releases, not just more test cases"
             text={profile.summary}
           />
-          <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
             {services.map((service) => (
-              <div key={service} className="flex items-start gap-3 border-l-4 border-amber-500 bg-stone-50 sm:p-3 p-4">
+              <div key={service} className="flex items-start gap-3 border-l-4 border-amber-500 bg-stone-50 p-4 sm:p-3">
                 <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-stone-900" />
-                <p className="text-sm sm:text-xs md:text-sm font-bold text-stone-700">{service}</p>
+                <p className="text-sm font-bold leading-6 text-stone-700 sm:text-xs md:text-sm">{service}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="projects" className="mx-auto max-w-7xl px-6 py-20 md:px-10">
+      <section id="projects" className="parallax-section mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-10 md:py-20">
         <SectionTitle
           eyebrow="Projects"
           title="Selected project contexts, cleaned up for signal"
           text="A concise view of the platforms where I handled QA risk, validation depth, automation coverage, and release confidence."
         />
 
-        <div className="mx-auto mb-8 flex w-full sm:max-w-xl items-center gap-3 rounded-full border border-stone-900/10 bg-white px-5 py-3 shadow-lg shadow-stone-200/80">
+        <div className="project-search mx-auto mb-8 hidden w-full items-center gap-3 rounded-2xl border border-stone-900/10 bg-white px-4 py-3 shadow-lg shadow-stone-200/80 sm:max-w-xl sm:rounded-full sm:px-5 md:flex">
           <Search className="h-5 w-5 text-amber-700" />
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search by POS, ETL, healthcare, blockchain, automation..."
-            className="w-full bg-transparent text-sm font-semibold outline-none placeholder:text-stone-400"
+            className="min-w-0 w-full bg-transparent text-sm font-semibold outline-none placeholder:text-stone-400"
           />
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2 md:gap-6">
           {filteredProjects.map((project) => (
             <motion.article
               key={project.title}
@@ -503,16 +683,16 @@ function App() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.25 }}
               variants={fadeUp}
-              className="group rounded-[1.25rem] border border-stone-900/10 bg-white sm:p-5 p-7 shadow-sm shadow-stone-200/80 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-300/50"
+              className="group rounded-[1.25rem] border border-stone-900/10 bg-white p-5 shadow-sm shadow-stone-200/80 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-300/50 md:p-7"
             >
               <div className="mb-5 flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-sm font-black uppercase tracking-[0.18em] text-amber-700">{project.domain}</p>
-                  <h3 className="mt-2 font-serif text-3xl sm:text-2xl md:text-3xl font-black text-stone-950">{project.title}</h3>
+                  <p className="text-xs font-black uppercase tracking-[0.16em] text-amber-700 sm:text-sm sm:tracking-[0.18em]">{project.domain}</p>
+                  <h3 className="mt-2 font-serif text-2xl font-black text-stone-950 md:text-3xl">{project.title}</h3>
                 </div>
                 <ExternalLink className="h-5 w-5 shrink-0 text-stone-400 transition group-hover:text-amber-700" />
               </div>
-              <p className="text-sm sm:text-xs md:text-sm leading-7 text-stone-600">{project.summary}</p>
+              <p className="text-sm leading-7 text-stone-600">{project.summary}</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {project.focus.map((item) => (
                   <Pill key={item}>{item}</Pill>
@@ -523,14 +703,14 @@ function App() {
         </div>
       </section>
 
-      <section id="domains" className="border-y border-stone-900/10 bg-white px-6 py-20 md:px-10">
+      <section id="domains" className="parallax-section border-y border-stone-900/10 bg-white px-4 py-14 sm:px-6 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Domains"
             title="Domain experience, translated into QA risk"
             text="Not just industries I have touched, but the types of product risk I have learned to test: payments, data accuracy, platform reliability, role-based workflows, and reporting trust."
           />
-          <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {domains.map((domain) => {
               const Icon = domain.icon;
               return (
@@ -540,7 +720,7 @@ function App() {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.25 }}
                   variants={fadeUp}
-                  className="group border border-stone-900/10 bg-stone-50 sm:p-6 p-6 transition hover:-translate-y-1 hover:border-amber-500 hover:bg-white hover:shadow-xl hover:shadow-stone-200/80"
+                  className="group border border-stone-900/10 bg-stone-50 p-5 transition hover:-translate-y-1 hover:border-amber-500 hover:bg-white hover:shadow-xl hover:shadow-stone-200/80 sm:p-6"
                 >
                   <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-stone-950 text-white transition group-hover:bg-amber-400 group-hover:text-stone-950">
                     <Icon className="h-6 w-6" />
@@ -559,7 +739,7 @@ function App() {
         </div>
       </section>
 
-      <section id="experience" className="border-y border-stone-900/10 bg-stone-950 px-6 py-20 text-white md:px-10">
+      <section id="experience" className="parallax-section dark-panel border-y border-stone-900/10 bg-stone-950 px-4 py-14 text-white sm:px-6 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Experience"
@@ -567,13 +747,13 @@ function App() {
             text="A compact view of the teams, processes, domains, and responsibilities that shaped how I approach quality ownership, collaboration, automation, and release confidence."
             inverted
           />
-          <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {experience.map((item) => (
-              <div key={`${item.company}-${item.period}`} className="border border-white/10 bg-white/[0.04] sm:p-4 p-6 transition hover:border-amber-400/70 hover:bg-white/[0.07]">
-                <p className="mb-4 inline-flex rounded-full bg-amber-300 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-stone-950">
+              <div key={`${item.company}-${item.period}`} className="border border-white/10 bg-white/[0.04] p-5 transition hover:border-amber-400/70 hover:bg-white/[0.07] md:p-6">
+                <p className="mb-4 inline-flex rounded-full bg-amber-300 px-3 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-stone-950 sm:text-xs sm:tracking-[0.16em]">
                   {item.period}
                 </p>
-                <h3 className="font-serif text-xl sm:text-lg md:text-xl font-black text-white">{item.company}</h3>
+                <h3 className="font-serif text-lg font-black text-white md:text-xl">{item.company}</h3>
                 <p className="mt-2 text-sm font-black text-amber-200">{item.title}</p>
                 <p className="mt-4 text-sm leading-6 text-stone-300">{item.summary}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
@@ -589,17 +769,17 @@ function App() {
         </div>
       </section>
 
-      <section id="skills" className="mx-auto max-w-7xl px-6 py-20 md:px-10">
+      <section id="skills" className="parallax-section mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-10 md:py-20">
         <SectionTitle
           eyebrow="Skills"
           title="Focused capabilities, not a keyword pile"
           text="A cleaner view of the skills that matter most for senior QA ownership: strategy, automation, delivery visibility, and thoughtful AI-assisted testing."
         />
-        <div className="grid gap-5 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {skillGroups.map((group) => (
-            <div key={group.title} className="border border-stone-900/10 bg-white sm:p-4 p-6 shadow-sm shadow-stone-200/80">
-              <h3 className="font-serif text-2xl sm:text-xl md:text-2xl font-black text-stone-950">{group.title}</h3>
-              <p className="mt-3 text-sm sm:text-xs md:text-sm leading-6 text-stone-600">{group.text}</p>
+            <div key={group.title} className="border border-stone-900/10 bg-white p-5 shadow-sm shadow-stone-200/80 md:p-6">
+              <h3 className="font-serif text-xl font-black text-stone-950 md:text-2xl">{group.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-stone-600">{group.text}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {group.items.map((item) => (
                   <Pill key={item}>{item}</Pill>
@@ -610,12 +790,12 @@ function App() {
         </div>
       </section>
 
-      <section id="education" className="border-y border-stone-900/10 bg-white px-6 py-20 md:px-10">
+      <section id="education" className="parallax-section border-y border-stone-900/10 bg-white px-4 py-14 sm:px-6 md:px-10 md:py-20">
         <div className="mx-auto max-w-5xl">
           <SectionTitle eyebrow="Education" title="Academic background" />
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2 md:gap-6">
             {education.map((item) => (
-              <div key={item.degree} className="rounded-[1.25rem] border border-stone-900/10 bg-stone-50 p-6 shadow-sm">
+              <div key={item.degree} className="rounded-[1.25rem] border border-stone-900/10 bg-stone-50 p-5 shadow-sm sm:p-6">
                 <p className="mb-4 inline-flex rounded-full bg-stone-950 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-white">
                   {item.year}
                 </p>
@@ -627,62 +807,69 @@ function App() {
         </div>
       </section>
 
-      <section className="px-6 py-20 md:px-10">
-        <div className="mx-auto grid max-w-6xl overflow-hidden rounded-[1.5rem] bg-stone-950 text-white shadow-2xl shadow-stone-900/20 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="p-8 md:p-12">
-            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-amber-300 text-stone-950">
-              <Zap className="h-7 w-7" />
+      <section className="parallax-section px-4 py-14 sm:px-6 md:px-10 md:py-20">
+        <div className="work-cta mx-auto grid max-w-6xl overflow-hidden rounded-[1.25rem] bg-stone-950 text-white shadow-2xl shadow-stone-900/20 sm:rounded-[1.5rem] lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="p-5 sm:p-8 md:p-12">
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-amber-300 text-stone-950 sm:mb-6 sm:h-14 sm:w-14">
+              <Zap className="h-6 w-6 sm:h-7 sm:w-7" />
             </div>
-            <p className="mb-3 text-sm font-black uppercase tracking-[0.24em] text-amber-300">Work with me</p>
-            <h2 className="font-serif text-3xl font-black tracking-tight md:text-5xl">
+            <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-amber-300 sm:text-sm sm:tracking-[0.24em]">Work with me</p>
+            <h2 className="font-serif text-[1.85rem] font-black leading-[1.05] tracking-tight sm:text-3xl md:text-5xl">
               I help teams make quality a shared operating habit.
             </h2>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-stone-300">
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-stone-300 sm:hidden">
+              Bring me in when releases need clearer risk, stronger test evidence, and calmer sign-off.
+            </p>
+            <p className="mt-5 hidden max-w-2xl text-base leading-7 text-stone-300 sm:block">
               The work I enjoy most is helping people align around risk, improve testing routines, make defects easier to reason about, and build release practices that feel clear instead of chaotic.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:flex sm:flex-wrap">
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-flex items-center gap-2 rounded-full bg-amber-300 px-5 py-3 text-sm font-black text-stone-950 transition hover:-translate-y-0.5 hover:bg-amber-200"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-amber-300 px-4 py-3 text-sm font-black text-stone-950 transition hover:-translate-y-0.5 hover:bg-amber-200 sm:px-5"
               >
-                Start a quality conversation <ArrowRight className="h-4 w-4" />
+                <span className="sm:hidden">Email me</span>
+                <span className="hidden sm:inline">Start a quality conversation</span>
+                <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href={profile.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:border-amber-300 hover:bg-white/10"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 px-4 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 hover:border-amber-300 hover:bg-white/10 sm:px-5"
               >
-                Connect on LinkedIn <ExternalLink className="h-4 w-4" />
+                <span className="sm:hidden">LinkedIn</span>
+                <span className="hidden sm:inline">Connect on LinkedIn</span>
+                <ExternalLink className="h-4 w-4" />
               </a>
             </div>
           </div>
-          <div className="border-t border-white/10 bg-white/[0.04] p-8 md:p-12 lg:border-l lg:border-t-0">
-            <h3 className="font-serif text-2xl font-black">Where I can be useful</h3>
-            <div className="mt-6 space-y-4">
+          <div className="border-t border-white/10 bg-white/[0.04] p-5 sm:p-8 md:p-12 lg:border-l lg:border-t-0">
+            <h3 className="font-serif text-xl font-black sm:text-2xl">Best fit</h3>
+            <div className="mt-4 space-y-3 sm:mt-6 sm:space-y-4">
               {[
-                "Working with teams to improve QA ownership, process clarity, and delivery confidence",
-                "Creating practical QA routines that developers, product teams, and stakeholders can trust",
-                "Data-intensive projects that deal with a wide variety of data",
-                "Making defect triage, test evidence, and release decisions easier to communicate",
+                "Release confidence and QA ownership",
+                "Practical automation and regression routines",
+                "Data-heavy validation and defect evidence",
               ].map((item) => (
                 <div key={item} className="flex gap-3 text-sm font-bold leading-6 text-stone-200">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-amber-300" />
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-amber-300 sm:h-5 sm:w-5" />
                   <span>{item}</span>
                 </div>
               ))}
             </div>
-            <div className="mt-8 rounded-2xl border border-white/10 bg-stone-950/60 p-5">
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-stone-400">Direct email</p>
-              <p className="mt-2 break-all font-mono text-sm text-amber-200">{profile.email}</p>
+            <div className="mt-6 rounded-2xl border border-white/10 bg-stone-950/60 p-4 sm:mt-8 sm:p-5">
+              <p className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-stone-400 sm:text-xs sm:tracking-[0.2em]">Direct email</p>
+              <p className="mt-2 break-all font-mono text-xs leading-5 text-amber-200 sm:text-sm">{profile.email}</p>
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-stone-900/10 bg-white px-6 py-8 text-center text-sm font-medium text-stone-500">
+      <footer className="border-t border-stone-900/10 bg-white px-4 py-8 text-center text-sm font-medium leading-6 text-stone-500 sm:px-6">
         <p>(c) {new Date().getFullYear()} {profile.name}. Passionate About Quality | Delivering Quality at Scale.</p>
       </footer>
+      </div>
     </main>
   );
 }
