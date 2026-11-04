@@ -26,21 +26,28 @@ import {
 
 const profile = {
   name: "Ankit Singh Bisht",
-  role: "Passionate About Quality | Automation & Release Quality | Delivering Quality at Scale",
+  role: "Senior QA Engineer | Release Quality, Automation, API & Data Validation",
   location: "Sinamangal, Kathmandu - 9",
   email: "ankitsinghbisht@hotmail.com",
   phone: "(+977) 9813130170",
   linkedin: "https://www.linkedin.com/in/ankitsbisht/",
   headline:
-    "Helping teams build calmer release habits through quality ownership, clear process, and practical automation.",
+    "I help product teams reduce release risk by turning ambiguous product, API, and data issues into clear test evidence and release decisions.",
   summary:
-    "Senior QA Engineer and QA Lead with 10+ years of experience across FoodTech, FinTech, SaaS, e-commerce, blockchain, healthcare, data platforms, claims management, digital marketing technology, and risk intelligence products. I work best where people, process, and product risk meet: helping teams clarify ownership, improve quality routines, strengthen automation, and make release decisions with better evidence.",
+    "Senior QA Engineer and QA Lead with 10+ years of experience across FoodTech, FinTech, SaaS, e-commerce, blockchain, healthcare, data platforms, claims management, digital marketing technology, and risk intelligence products. My work sits at the intersection of product risk, data accuracy, automation, and stakeholder sign-off: clarify what matters, validate the critical paths, and make release readiness easier to defend.",
 };
 
 const valueProps = [
-  "Quality ownership across teams and workflows",
-  "Process clarity that makes delivery less reactive",
-  "Automation that supports people instead of replacing judgment",
+  "Clarify the release risks that matter",
+  "Validate critical flows with API, SQL, and product evidence",
+  "Create sign-off clarity for product and engineering stakeholders",
+];
+
+const proofStats = [
+  ["10+", "Years in QA and product delivery"],
+  ["15-20", "Release cycles supported"],
+  ["8", "Product domains tested"],
+  ["API + SQL", "Validation across services, databases, and reports"],
 ];
 
 const skillGroups = [
@@ -108,23 +115,23 @@ const domains = [
 const highlights = [
   {
     icon: ShieldCheck,
-    title: "Release Confidence",
-    text: "Supported 15-20 release cycles with regression testing, release validation, checklists, notes, sign-off communication, and post-release verification.",
+    title: "Board-Level Message",
+    text: "I reduce release ambiguity by converting product risk into test coverage, sign-off evidence, and post-release verification.",
   },
   {
     icon: Bot,
-    title: "Product QA Depth",
-    text: "Led QA for Izy mAIFood across CMS, POS User Flow, POS Chef Flow, annotation workflows, computer vision recognition, payments, refunds, billing, and reporting.",
+    title: "Where I Add Leverage",
+    text: "Complex workflows involving POS, payments, APIs, SQL data, ETL, role-based journeys, reporting, automation, and release coordination.",
   },
   {
     icon: Database,
-    title: "Data and API Assurance",
-    text: "Validated transaction records, order data, payment states, refunds, reconciliation, tenant mapping, ETL pipelines, and source-to-target migration accuracy.",
+    title: "Evidence Base",
+    text: "Hands-on validation of transaction records, order data, payment states, refunds, reconciliation, tenant mapping, ETL, and migrations.",
   },
   {
     icon: BarChart3,
-    title: "Team and Process Leadership",
-    text: "Defined QA processes, quality checkpoints, KPIs, reporting mechanisms, team guidance, defect tracking, and cross-functional release coordination.",
+    title: "Operating Model",
+    text: "Quality checkpoints, defect triage, KPIs, reporting, release notes, stakeholder communication, mentoring, and cross-functional sign-off.",
   },
 ];
 
@@ -132,49 +139,65 @@ const projects = [
   {
     title: "Izy mAIFood",
     domain: "AI FoodTech POS",
-    summary: "AI-powered POS platform with CMS, computer vision recognition, payments, refunds, billing, and reporting.",
+    risk: "Transaction errors could affect orders, payments, refunds, billing, reporting, and daily restaurant operations.",
+    response: "Validated POS, chef, CMS, payment, refund, API, annotation, and AI recognition workflows.",
+    impact: "Created clearer release evidence for a high-volume AI FoodTech platform.",
     focus: ["POS workflows", "AI recognition", "Payments", "API checks"],
   },
   {
     title: "Iagon",
     domain: "Blockchain / Cloud",
-    summary: "Decentralized cloud storage and compute platform built around blockchain-based resource sharing.",
+    risk: "Platform reliability depended on accurate storage, compute, provider, account, and dashboard behavior.",
+    response: "Tested cloud workflows, compute flows, QA checkpoints, and team-level release routines.",
+    impact: "Strengthened confidence in customer-facing infrastructure workflows.",
     focus: ["Cloud storage", "Compute flows", "QA checkpoints", "Team guidance"],
   },
   {
     title: "CrediLinq",
     domain: "Embedded Finance",
-    summary: "Digital lending platform covering business financing journeys, backend validation, and financial data handling.",
+    risk: "Application accuracy and financial data handling were critical across lending journeys.",
+    response: "Validated business financing flows, backend rules, regression scenarios, and financial data behavior.",
+    impact: "Reduced uncertainty around customer journeys and financial process integrity.",
     focus: ["Application flows", "Backend rules", "Financial data", "Regression"],
   },
   {
     title: "Syntro Health",
     domain: "Healthcare / Clinical Trials",
-    summary: "Healthcare and clinical trial platform covering clinical workflows, user roles, and process validation.",
+    risk: "Clinical workflows required dependable role behavior, data handling, and process accuracy.",
+    response: "Validated healthcare journeys, user roles, data handling, and release readiness.",
+    impact: "Improved confidence in sensitive healthcare and clinical trial workflows.",
     focus: ["Clinical flows", "User roles", "Data handling", "Release readiness"],
   },
   {
     title: "Stratfor Worldview / RANE",
     domain: "Risk Intelligence SaaS",
-    summary: "Geopolitical risk intelligence platform covering dashboards, content delivery, reporting, search, and filtering.",
+    risk: "Decision-support users depended on reliable dashboards, search, reports, and content delivery.",
+    response: "Tested reporting, search, filtering, content delivery, dashboards, and integration behavior.",
+    impact: "Protected trust in a subscription-based risk intelligence platform.",
     focus: ["Dashboards", "Reports", "Search", "Integration QA"],
   },
   {
     title: "PF Concept",
     domain: "E-commerce Data / ETL",
-    summary: "Promotional products e-commerce platform with catalogue data, ETL migration validation, and reporting.",
+    risk: "Catalogue and migration errors could weaken reporting quality and e-commerce confidence.",
+    response: "Used ETL testing, source-to-target checks, reconciliation, data integrity validation, and SSIS workflows.",
+    impact: "Improved confidence in migration-heavy product data and reporting.",
     focus: ["ETL testing", "Data integrity", "Reconciliation", "SSIS"],
   },
   {
     title: "Gallagher Bassett GBCARE",
     domain: "Claims Management",
-    summary: "Claims management and healthcare support platform covering claim intake, referrals, and case management.",
+    risk: "Operational handoffs depended on accurate claims intake, referrals, and case visibility.",
+    response: "Tested claims workflows, healthcare support flows, Selenium automation, and framework coverage.",
+    impact: "Supported more dependable claims management and healthcare support operations.",
     focus: ["Claims workflows", "Healthcare support", "Selenium", "Automation framework"],
   },
   {
     title: "GrowByData",
     domain: "E-commerce Marketing Intelligence",
-    summary: "Marketing and pricing intelligence platform covering campaigns, A/B testing, conversion insights, and reporting.",
+    risk: "Marketing decisions depended on trustworthy campaign, A/B testing, Salesforce, and reporting behavior.",
+    response: "Validated campaign QA, conversion insights, reporting, Salesforce flows, and performance checks.",
+    impact: "Improved confidence in marketing intelligence and pricing workflows.",
     focus: ["Campaign QA", "A/B testing", "Salesforce", "Performance checks"],
   },
 ];
@@ -259,12 +282,12 @@ const education = [
 ];
 
 const services = [
-  "QA strategy and process definition",
-  "Functional, regression, API, and end-to-end testing",
-  "Selenium, Playwright, Python, Java, and API automation",
-  "SQL, ETL, database, transaction, and reconciliation validation",
-  "Release validation, sign-off, post-release verification, and RCA",
-  "QA leadership, mentoring, reporting, and stakeholder communication",
+  "Release QA ownership from risk review to sign-off",
+  "Functional, regression, API, and end-to-end validation",
+  "Selenium, Playwright, Python, Java, and Postman automation",
+  "SQL, ETL, transaction, reconciliation, and reporting checks",
+  "Defect triage, RCA, release notes, and post-release verification",
+  "QA mentoring, reporting, KPIs, and stakeholder communication",
 ];
 
 const navLinks = [
@@ -291,14 +314,14 @@ const storySlides = [
   },
   {
     eyebrow: "Release Signal",
-    title: "Quality leadership that ships calmly.",
-    text: "A quick view of the release, product, data, and process strengths I bring into teams.",
+    title: "A QA operator for risk-heavy product releases.",
+    text: "A quick view of the release, product, data, and process strengths I bring into product teams.",
     items: highlights.map((item) => item.title),
     tone: "dark",
   },
   {
     eyebrow: "Projects",
-    title: "Complex products, tested for the risks that matter.",
+    title: "Case contexts framed by risk and response.",
     text: "Representative contexts across FoodTech POS, cloud, lending, healthcare, claims, data, and risk intelligence.",
     items: projects.slice(0, 4).map((project) => project.title),
     tone: "light",
@@ -333,9 +356,9 @@ const storySlides = [
   },
   {
     eyebrow: "Work With Me",
-    title: "Bring me in when releases need calmer evidence.",
-    text: "Useful for QA ownership, practical automation, regression routines, data-heavy validation, and clearer sign-off.",
-    items: ["Release confidence", "Automation routines", "Data validation"],
+    title: "Useful when release readiness needs proof.",
+    text: "Relevant for QA ownership, practical automation, regression routines, data-heavy validation, and stakeholder sign-off.",
+    items: ["Release confidence", "Automation coverage", "Data validation"],
     tone: "dark",
   },
 ];
@@ -474,7 +497,7 @@ function App() {
     const normalized = query.toLowerCase().trim();
     if (!normalized) return projects;
     return projects.filter((project) => {
-      const content = [project.title, project.domain, project.summary, ...project.focus]
+      const content = [project.title, project.domain, project.risk, project.response, project.impact, ...project.focus]
         .join(" ")
         .toLowerCase();
       return content.includes(normalized);
@@ -500,10 +523,7 @@ function App() {
 
       <div className="desktop-site">
       <nav className="mobile-story-nav sticky top-0 z-30 border-b border-stone-900/10 bg-[#f6f1e8]/95 px-3 py-2.5 backdrop-blur sm:px-4 md:px-10 md:py-4">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 md:gap-5">
-          <a href="#top" className="min-w-0 font-serif text-base font-black leading-tight text-stone-950 sm:text-xl">
-            Ankit Singh Bisht
-          </a>
+        <div className="mx-auto flex max-w-7xl items-center justify-end gap-3 md:justify-between md:gap-5">
           <div className="hidden items-center gap-1 md:flex">
             {navLinks.map(([label, href]) => (
               <a
@@ -536,14 +556,24 @@ function App() {
           <motion.div className="parallax-copy min-w-0" initial="hidden" animate="visible" variants={fadeUp} transition={{ duration: 0.6 }}>
             <div className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-stone-900/10 bg-white/70 px-3 py-2 text-xs font-black leading-5 text-stone-700 shadow-sm backdrop-blur sm:mb-6 sm:px-4 sm:text-sm">
               <Sparkles className="h-4 w-4 shrink-0" />
-              <span className="min-w-0">Passionate About Quality | Delivering Quality at Scale</span>
+              <span className="min-w-0">Executive QA profile | 10+ years across complex product releases</span>
             </div>
             <h1 className="max-w-4xl text-balance font-serif text-[2.35rem] font-black leading-[0.96] tracking-tight text-stone-950 sm:text-5xl md:text-6xl lg:text-7xl">
-              {profile.name}
+              Reduce release risk with clearer QA ownership, evidence, and sign-off.
             </h1>
-            <p className="mt-4 text-[0.95rem] font-black leading-7 text-stone-800 sm:text-base md:text-xl">{profile.role}</p>
+            <p className="mt-4 text-[0.95rem] font-black leading-7 text-stone-800 sm:text-base md:text-xl">
+              {profile.name} - {profile.role}
+            </p>
             <p className="mt-2 text-sm font-bold text-stone-500 sm:text-base">{profile.location}</p>
             <p className="mt-5 max-w-3xl text-[0.95rem] leading-7 text-stone-700 sm:text-lg sm:leading-8 md:mt-7">{profile.headline}</p>
+            <div className="mt-5 grid max-w-3xl grid-cols-2 gap-2.5 sm:grid-cols-4 md:mt-7">
+              {proofStats.map(([number, label]) => (
+                <div key={label} className="border border-stone-900/10 bg-white/70 px-3 py-3 shadow-sm shadow-stone-200/60">
+                  <p className="font-serif text-xl font-black text-stone-950 sm:text-2xl">{number}</p>
+                  <p className="mt-1 text-[0.68rem] font-bold leading-4 text-stone-600 sm:text-xs">{label}</p>
+                </div>
+              ))}
+            </div>
             <div className="mt-5 grid max-w-3xl gap-2.5 sm:grid-cols-3 md:mt-7">
               {valueProps.map((item) => (
                 <div key={item} className="border-l-4 border-amber-500 bg-white/65 px-4 py-3 text-sm font-black leading-5 text-stone-800 shadow-sm shadow-stone-200/60">
@@ -556,7 +586,7 @@ function App() {
                 href={`mailto:${profile.email}`}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-stone-950 px-5 py-3 text-sm font-black text-white shadow-xl shadow-stone-900/20 transition hover:-translate-y-0.5 hover:bg-stone-800"
               >
-                <Mail className="h-4 w-4" /> Start a conversation
+                <Mail className="h-4 w-4" /> Discuss QA leadership
               </a>
               <a
                 href={profile.linkedin}
@@ -582,21 +612,21 @@ function App() {
               </div>
               <div className="relative mt-5">
                 <p className="text-sm font-bold text-amber-300">Positioning snapshot</p>
-                <h3 className="font-serif text-2xl font-black sm:text-3xl">QA leadership that ships</h3>
+                <h3 className="font-serif text-2xl font-black sm:text-3xl">Release quality with evidence</h3>
               </div>
             </div>
             <div className="p-5 sm:p-6">
               <div className="mb-6 flex items-center justify-between">
                 <div>
                 <p className="text-sm text-stone-400">Working style</p>
-                <h3 className="text-xl font-black">People, process, and quality</h3>
+                <h3 className="text-xl font-black">Risk, evidence, and sign-off</h3>
                 </div>
                 <MonitorCog className="h-8 w-8 text-amber-300" />
               </div>
               <div className="grid gap-4 border-y border-white/10 py-5 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
                 {[
-                  ["10+", "Years in QA and product delivery"],
-                  ["8", "Domains with hands-on product QA"],
+                  proofStats[0],
+                  proofStats[1],
                 ].map(([number, label]) => (
                   <div key={label}>
                     <p className="font-serif text-4xl font-black text-amber-200">{number}</p>
@@ -643,8 +673,8 @@ function App() {
       <section id="about" className="parallax-section border-y border-stone-900/10 bg-white px-4 py-14 sm:px-6 md:px-10 md:py-20">
         <div className="mx-auto max-w-5xl">
           <SectionTitle
-            eyebrow="About"
-            title="QA leadership for teams that need reliable releases, not just more test cases"
+            eyebrow="Executive Summary"
+            title="I help teams make release readiness easier to prove"
             text={profile.summary}
           />
           <div className="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3">
@@ -660,9 +690,9 @@ function App() {
 
       <section id="projects" className="parallax-section mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-10 md:py-20">
         <SectionTitle
-          eyebrow="Projects"
-          title="Selected project contexts, cleaned up for signal"
-          text="A concise view of the platforms where I handled QA risk, validation depth, automation coverage, and release confidence."
+          eyebrow="Selected Case Contexts"
+          title="Risk, QA response, and confidence created"
+          text="A consulting-style view of where product risk showed up, how I tested it, and what confidence the work created."
         />
 
         <div className="project-search mx-auto mb-8 hidden w-full items-center gap-3 rounded-2xl border border-stone-900/10 bg-white px-4 py-3 shadow-lg shadow-stone-200/80 sm:max-w-xl sm:rounded-full sm:px-5 md:flex">
@@ -692,7 +722,18 @@ function App() {
                 </div>
                 <ExternalLink className="h-5 w-5 shrink-0 text-stone-400 transition group-hover:text-amber-700" />
               </div>
-              <p className="text-sm leading-7 text-stone-600">{project.summary}</p>
+              <div className="grid gap-3 text-sm leading-6 text-stone-600">
+                {[
+                  ["Risk", project.risk],
+                  ["QA response", project.response],
+                  ["Confidence created", project.impact],
+                ].map(([label, text]) => (
+                  <div key={label} className="border-l-4 border-stone-200 pl-3">
+                    <p className="text-[0.68rem] font-black uppercase tracking-[0.16em] text-stone-500">{label}</p>
+                    <p className="mt-1">{text}</p>
+                  </div>
+                ))}
+              </div>
               <div className="mt-6 flex flex-wrap gap-2">
                 {project.focus.map((item) => (
                   <Pill key={item}>{item}</Pill>
@@ -706,9 +747,9 @@ function App() {
       <section id="domains" className="parallax-section border-y border-stone-900/10 bg-white px-4 py-14 sm:px-6 md:px-10 md:py-20">
         <div className="mx-auto max-w-7xl">
           <SectionTitle
-            eyebrow="Domains"
-            title="Domain experience, translated into QA risk"
-            text="Not just industries I have touched, but the types of product risk I have learned to test: payments, data accuracy, platform reliability, role-based workflows, and reporting trust."
+            eyebrow="Risk Coverage"
+            title="Domain exposure translated into test priorities"
+            text="Not just industries I have touched, but the product risks I have learned to test: payments, data accuracy, platform reliability, role-based workflows, and reporting trust."
           />
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {domains.map((domain) => {
@@ -743,8 +784,8 @@ function App() {
         <div className="mx-auto max-w-7xl">
           <SectionTitle
             eyebrow="Experience"
-            title="Career timeline with the signal turned up"
-            text="A compact view of the teams, processes, domains, and responsibilities that shaped how I approach quality ownership, collaboration, automation, and release confidence."
+            title="Progression across ownership, delivery, and QA leadership"
+            text="A compact view of the teams, processes, domains, and responsibilities that shaped how I approach quality ownership, collaboration, automation, and stakeholder sign-off."
             inverted
           />
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -771,9 +812,9 @@ function App() {
 
       <section id="skills" className="parallax-section mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-10 md:py-20">
         <SectionTitle
-          eyebrow="Skills"
-          title="Focused capabilities, not a keyword pile"
-          text="A cleaner view of the skills that matter most for senior QA ownership: strategy, automation, delivery visibility, and thoughtful AI-assisted testing."
+          eyebrow="Capability Map"
+          title="Capabilities grouped by business use"
+          text="The capabilities that matter most for senior QA ownership: risk-based strategy, automation, API/data validation, release visibility, and thoughtful AI-assisted testing."
         />
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {skillGroups.map((group) => (
@@ -815,13 +856,13 @@ function App() {
             </div>
             <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-amber-300 sm:text-sm sm:tracking-[0.24em]">Work with me</p>
             <h2 className="font-serif text-[1.85rem] font-black leading-[1.05] tracking-tight sm:text-3xl md:text-5xl">
-              I help teams make quality a shared operating habit.
+              Bring me in when release quality needs ownership, evidence, and follow-through.
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-stone-300 sm:hidden">
-              Bring me in when releases need clearer risk, stronger test evidence, and calmer sign-off.
+              Useful for release risk, automation coverage, API/data validation, and stakeholder sign-off.
             </p>
             <p className="mt-5 hidden max-w-2xl text-base leading-7 text-stone-300 sm:block">
-              The work I enjoy most is helping people align around risk, improve testing routines, make defects easier to reason about, and build release practices that feel clear instead of chaotic.
+              I help product teams turn ambiguous release risk into practical test coverage, readable defect evidence, stronger automation routines, and sign-off communication stakeholders can trust.
             </p>
             <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:flex sm:flex-wrap">
               <a
@@ -829,7 +870,7 @@ function App() {
                 className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-amber-300 px-4 py-3 text-sm font-black text-stone-950 transition hover:-translate-y-0.5 hover:bg-amber-200 sm:px-5"
               >
                 <span className="sm:hidden">Email me</span>
-                <span className="hidden sm:inline">Start a quality conversation</span>
+                <span className="hidden sm:inline">Discuss release quality</span>
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
@@ -848,9 +889,9 @@ function App() {
             <h3 className="font-serif text-xl font-black sm:text-2xl">Best fit</h3>
             <div className="mt-4 space-y-3 sm:mt-6 sm:space-y-4">
               {[
-                "Release confidence and QA ownership",
-                "Practical automation and regression routines",
-                "Data-heavy validation and defect evidence",
+                "Product teams needing QA ownership across complex releases",
+                "API, SQL, payment, refund, migration, and reporting validation",
+                "Practical automation, regression coverage, and defect evidence",
               ].map((item) => (
                 <div key={item} className="flex gap-3 text-sm font-bold leading-6 text-stone-200">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-amber-300 sm:h-5 sm:w-5" />
@@ -867,7 +908,7 @@ function App() {
       </section>
 
       <footer className="border-t border-stone-900/10 bg-white px-4 py-8 text-center text-sm font-medium leading-6 text-stone-500 sm:px-6">
-        <p>(c) {new Date().getFullYear()} {profile.name}. Passionate About Quality | Delivering Quality at Scale.</p>
+        <p>(c) {new Date().getFullYear()} {profile.name}. Release Quality | Automation | API and Data Validation.</p>
       </footer>
       </div>
     </main>
